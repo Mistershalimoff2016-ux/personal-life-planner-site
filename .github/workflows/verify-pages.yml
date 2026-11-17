@@ -1,0 +1,51 @@
+name: Verify public PWA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser test dependencies
+        run: |
+          mkdir -p "$RUNNER_TEMP/pwa-tools"
+          npm install --prefix "$RUNNER_TEMP/pwa-tools" --no-audit --no-fund playwright@1.62.1
+          "$RUNNER_TEMP/pwa-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Test actual HTTPS site
+        env:
+          NODE_PATH: ${{ runner.temp }}/pwa-tools/node_modules
+          PWA_REPORT_DIR: ${{ runner.temp }}/public-check
+        run: node .github/scripts/verify-pages.cjs
+      - name: Preserve public diagnostic evidence
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -f "$RUNNER_TEMP/public-check/latest.json" ]; then
+            mkdir -p "$RUNNER_TEMP/public-check"
+            printf '{"pass":false,"failure":"Browser test did not reach report generation","run":"%s"}\n' "$GITHUB_RUN_ID" > "$RUNNER_TEMP/public-check/latest.json"
+          fi
+          mkdir -p "$RUNNER_TEMP/check-report"
+          cd "$RUNNER_TEMP/check-report"
+          git init -b pages-verification
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          cp -a "$RUNNER_TEMP/public-check/." .
+          git add .
+          git commit -m "Public PWA verification run $GITHUB_RUN_ID"
+          gh auth setup-git
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
+          git push --force origin HEAD:pages-verification
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-pwa-browser-evidence
+          path: ${{ runner.temp }}/public-check
