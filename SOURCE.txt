@@ -1,12 +1,12 @@
-KOSTYUM Personal OS / Personal Life Planner — GPL-3.0 corresponding source
+KOSTYUM Simple Planner V1 — GPL-3.0 corresponding source
 Based on OpenHabitTracker by Jinjinov. Original attribution retained; see LICENSE.
 https://github.com/Jinjinov/OpenHabitTracker
 
-Public source of this exact startup/update fix:
-https://github.com/Mistershalimoff2016-ux/personal-life-planner-site/raw/refs/heads/main/source/personal-life-planner-257aad9c.zip
-Relative: source/personal-life-planner-257aad9c.zip
-Revision: 257aad9c78982070a5ab2f3d21d572a7306f6cf5
-SHA-256: b6fb27b73a53789bf8592f1ae39695c36d45404d953f3a1cd76e581dc709fdb5
+Public source of this exact version:
+https://github.com/Mistershalimoff2016-ux/personal-life-planner-site/raw/refs/heads/main/source/personal-life-planner-f713373e.zip
+Relative: source/personal-life-planner-f713373e.zip
+Revision: f713373ec5468bd9d93d7d63cd99946affe68914
+SHA-256: 19da722d686401fbf453897bab19dbbc309585abb275cc07ed4c3128a7ce167b
 Build instructions and privacy exclusions: source/README.md and PUBLIC-SOURCE-NOTES.txt.
-No user database, runtime .env, browser profile, token or upstream backup samples included.
+No runtime .env, user database, browser profile, token or upstream backup samples included.
 Third-party dependency notices and licenses retained.

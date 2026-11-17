@@ -1,0 +1,10 @@
+The source ZIP corresponds to the exact tracked private source revision in build-info.json.
+Excluded from public redistribution: .git history, runtime .env/.env.* files, and
+TestFixtures containing upstream imported ZIP/SQLite backup samples. These are not
+needed to build or run the Blazor WebAssembly PWA. Build instructions: source/README.md.
+The full program, interfaces, data models, service worker, build scripts, license
+and original attribution are included. Server example configuration contains only
+upstream/local development defaults or placeholders; no live service credentials
+were added. The browser application requires no server or external API.
+No browser IndexedDB data, exported user backups, browser profiles or CI test
+profiles are included in this static distribution or corresponding source ZIP.

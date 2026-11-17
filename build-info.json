@@ -1,9 +1,9 @@
 {
-  "ui_version": "KOSTYUM UI V2 \u2014 startup/update fix",
-  "source_commit": "257aad9c78982070a5ab2f3d21d572a7306f6cf5",
+  "ui_version": "KOSTYUM Simple Planner V1",
+  "source_commit": "f713373ec5468bd9d93d7d63cd99946affe68914",
   "source_branch": "feat/personal-planner-mvp1",
   "deployment_repository": "Mistershalimoff2016-ux/personal-life-planner-site",
   "base_path": "/personal-life-planner-site/",
-  "corresponding_source": "source/personal-life-planner-257aad9c.zip",
-  "source_sha256": "b6fb27b73a53789bf8592f1ae39695c36d45404d953f3a1cd76e581dc709fdb5"
+  "corresponding_source": "source/personal-life-planner-f713373e.zip",
+  "source_sha256": "19da722d686401fbf453897bab19dbbc309585abb275cc07ed4c3128a7ce167b"
 }

@@ -253,3 +253,40 @@ html:has(.kos-shell),body:has(.kos-shell) { overflow:hidden; background:#0b1011;
 .kos-workout-exercise-detail dt { color:#8fa9a1; font-size:.68rem; font-weight:400; }
 .kos-workout-exercise-detail dd { margin:.25rem 0 0; color:#e4eee9; font-size:1.05rem; font-variant-numeric:tabular-nums; }
 @media (max-width:359px) { .kos-workout-two { grid-template-columns:1fr; } .kos-workout-three { gap:.4rem; } }
+
+/* Simple Planner: one action line, three destinations, no analytical panels. */
+.kos-shell .simple-bottom-nav { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.simple-page-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:24px; }
+.simple-page-header h1 { margin:0; font-size:28px; }
+.simple-page-header>.kos-muted { font-size:11px; text-align:right; }
+.simple-add .kos-quick-line { align-items:stretch; }
+.simple-add .kos-button { flex-shrink:0; padding-inline:15px; }
+.simple-add .kos-optional { margin-top:10px; }
+.simple-empty { color:var(--kos-muted); padding:24px 0; text-align:center; font-size:14px; }
+.simple-message { color:var(--kos-teal); font-size:13px; margin:12px 0; }
+.simple-today .kos-task-meta:empty { display:none; }
+.simple-today .kos-task-title { min-height:44px; }
+.simple-today .kos-reschedule>summary,.simple-add summary,.simple-task-editor summary { min-height:44px; }
+.simple-sport-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px; }
+.simple-sport-history { display:flex; flex-direction:column; gap:10px; }
+.simple-sport-row { display:flex; align-items:center; justify-content:space-between; min-height:72px; gap:14px; }
+.simple-sport-row strong { display:block; font-size:16px; }
+.simple-sport-row small { display:block; color:var(--kos-muted); font-size:12px; margin-top:5px; }
+.simple-settings-header { margin-bottom:22px; }
+.simple-settings-footer { display:flex; flex-direction:column; gap:8px; margin:24px 0; color:var(--kos-muted); font-size:11px; }
+.simple-backup .kos-button,.simple-backup .kos-button-secondary { margin:5px 5px 8px 0; }
+.simple-file { display:block; min-height:44px; margin:18px 0; padding:12px; border:1px solid var(--kos-line); border-radius:9px; }
+.simple-file input { display:block; margin-top:10px; max-width:100%; font-size:13px; }
+.simple-backup-preview { margin-top:18px; padding-top:16px; border-top:1px solid var(--kos-line); }
+.simple-error { color:#edb6a5; }
+@media(max-width:350px) { .simple-page-header { display:block; } .simple-page-header>.kos-muted { display:block; margin-top:8px; text-align:left; } .simple-add .kos-button { padding-inline:10px; } }
+.simple-history-row { display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:72px; }
+.simple-history-row>span:first-child { flex:1; min-width:0; }
+.simple-history-row strong,.simple-history-row time,.simple-history-row small { display:block; }
+.simple-history-row time,.simple-history-row small { color:var(--kos-muted); font-size:12px; margin-top:5px; }
+.simple-feedback { color:var(--kos-teal); font-size:13px; margin:0; }
+.simple-backup-error { color:#edb6a5; }
+.simple-backup-filename { overflow-wrap:anywhere; }
+.simple-task-editor .kos-toolbar { margin-bottom:0; }
+
+.kos-header .kos-icon-button { min-width: 44px; min-height: 44px; }

@@ -1,5 +1,5 @@
-/* Manifest version:6929a75044b6432c42fd */
-self.importScripts('./service-worker-assets.js?v=6929a75044b6432c42fd');
+/* Manifest version:04c98b1962f66656aa54 */
+self.importScripts('./service-worker-assets.js?v=04c98b1962f66656aa54');
 const version = self.assetsManifest.version;
 const baseUrl = new URL(self.registration.scope);
 const cacheNamePrefix = `personal-life-planner-${self.registration.scope}-`;

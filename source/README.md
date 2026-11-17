@@ -1,9 +1,19 @@
-# GPL-3.0 corresponding source — production startup/update fix
+# GPL-3.0 corresponding source — Simple Planner V1
 
-[Download exact source](personal-life-planner-257aad9c.zip). Source revision `257aad9c78982070a5ab2f3d21d572a7306f6cf5`.
+[Download exact source](personal-life-planner-f713373e.zip). Source revision `f713373ec5468bd9d93d7d63cd99946affe68914`.
 Original author: [Jinjinov / OpenHabitTracker](https://github.com/Jinjinov/OpenHabitTracker).
 
-SHA-256: `b6fb27b73a53789bf8592f1ae39695c36d45404d953f3a1cd76e581dc709fdb5`. Full tracked source/build scripts, except runtime `.env`,
+SHA-256: `19da722d686401fbf453897bab19dbbc309585abb275cc07ed4c3128a7ce167b`. Full tracked source and build scripts, except runtime `.env`,
 Git history and upstream TestFixtures backup/database samples. No excluded file is
-needed to compile the PWA. See PUBLIC-SOURCE-NOTES.txt and docs/PRODUCTION-FIX.md.
-Earlier source archives are retained for previously distributed versions.
+needed to compile the PWA. Earlier source archives are retained for previously distributed versions.
+
+With .NET SDK 10 and Python 3, extract the ZIP and run from its root:
+
+```sh
+dotnet publish OpenHabitTracker.Blazor.Wasm/OpenHabitTracker.Blazor.Wasm.csproj -c Release -o publish
+python3 scripts/prepare-pwa.py publish/wwwroot --base /personal-life-planner-site/
+```
+
+Serve `publish/wwwroot` at that prefix on a static HTTPS host. The application uses
+local IndexedDB and does not need the server project. See docs/SIMPLE-PLANNER-V1.md
+and docs/PRODUCTION-FIX.md. See ../PUBLIC-SOURCE-NOTES.txt for exclusions.
