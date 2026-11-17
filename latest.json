@@ -1,0 +1,50 @@
+{
+  "phase": "public",
+  "url": "https://mistershalimoff2016-ux.github.io/personal-life-planner-site/",
+  "time": "2026-11-17T20:07:49.718Z",
+  "run": "44165790534",
+  "siteCommit": "e6f8df0b5a9cd02e921320a48e27a087436d012f",
+  "expectedSource": "f713373ec5468bd9d93d7d63cd99946affe68914",
+  "browsers": [
+    {
+      "name": "chromium",
+      "pass": true,
+      "errors": [],
+      "failedRequests": [],
+      "badResponses": [],
+      "scenario": {
+        "task": "Изменённая простая задача",
+        "movedTask": "Перенесённая задача",
+        "workout": "Силовая"
+      },
+      "threeTabs": true,
+      "activeVersion": "04c98b1962f66656aa54",
+      "onlineRestart": true,
+      "offlineReloadAfterRestart": true,
+      "narrowViewport": true
+    },
+    {
+      "name": "webkit",
+      "pass": true,
+      "errors": [],
+      "failedRequests": [],
+      "badResponses": [],
+      "scenario": {
+        "task": "Изменённая простая задача",
+        "movedTask": "Перенесённая задача",
+        "workout": "Силовая"
+      },
+      "threeTabs": true,
+      "activeVersion": "04c98b1962f66656aa54",
+      "onlineRestart": true,
+      "offlineReloadAfterRestart": null,
+      "offlineLimitation": "Offline emulation unavailable in minimal WebKit probe; online restart verified.",
+      "narrowViewport": true
+    }
+  ],
+  "build": {
+    "status": 200,
+    "body": "{\n  \"ui_version\": \"KOSTYUM Simple Planner V1\",\n  \"source_commit\": \"f713373ec5468bd9d93d7d63cd99946affe68914\",\n  \"source_branch\": \"feat/personal-planner-mvp1\",\n  \"deployment_repository\": \"Mistershalimoff2016-ux/personal-life-planner-site\",\n  \"base_path\": \"/personal-life-planner-site/\",\n  \"corresponding_source\": \"source/personal-life-planner-f713373e.zip\",\n  \"source_sha256\": \"19da722d686401fbf453897bab19dbbc309585abb275cc07ed4c3128a7ce167b\"\n}\n"
+  },
+  "pass": true
+}

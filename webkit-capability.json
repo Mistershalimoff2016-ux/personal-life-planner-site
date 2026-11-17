@@ -1,0 +1,4 @@
+{
+  "sameSessionOffline": false,
+  "failure": "page.reload: WebKit encountered an internal error\nCall log:\n  - waiting for navigation until \"load\"\n"
+}
