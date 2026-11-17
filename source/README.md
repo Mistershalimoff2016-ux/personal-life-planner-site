@@ -1,13 +1,9 @@
-# Corresponding source — KOSTYUM UI V2
+# GPL-3.0 corresponding source — production startup/update fix
 
-[Download the exact modified source](personal-life-planner-8bfdd24c.zip). GPL-3.0; original author/project:
-[Jinjinov / OpenHabitTracker](https://github.com/Jinjinov/OpenHabitTracker).
+[Download exact source](personal-life-planner-257aad9c.zip). Source revision `257aad9c78982070a5ab2f3d21d572a7306f6cf5`.
+Original author: [Jinjinov / OpenHabitTracker](https://github.com/Jinjinov/OpenHabitTracker).
 
-Source revision: `8bfdd24c65bd929143ddf196dcf1b176d3157af7`. SHA-256: `0edf8fa4f0b2090e04d6887084f07ff80ecb824d74e6d25a0e7538b6c8c06880`.
-
-The archive includes application code, resources, tests and build scripts. Runtime
-`.env`, Git history and upstream TestFixtures backup/database samples are omitted
-for privacy; no omitted file is needed to build the PWA. Read PUBLIC-SOURCE-NOTES.txt
-inside the archive for build commands and fixture limitations.
-
-The previous source archive is retained for the earlier distributed version.
+SHA-256: `b6fb27b73a53789bf8592f1ae39695c36d45404d953f3a1cd76e581dc709fdb5`. Full tracked source/build scripts, except runtime `.env`,
+Git history and upstream TestFixtures backup/database samples. No excluded file is
+needed to compile the PWA. See PUBLIC-SOURCE-NOTES.txt and docs/PRODUCTION-FIX.md.
+Earlier source archives are retained for previously distributed versions.
