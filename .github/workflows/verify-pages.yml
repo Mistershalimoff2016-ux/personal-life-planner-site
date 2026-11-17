@@ -19,6 +19,11 @@ jobs:
           mkdir -p "$RUNNER_TEMP/pwa-tools"
           npm install --prefix "$RUNNER_TEMP/pwa-tools" --no-audit --no-fund playwright@1.62.1
           "$RUNNER_TEMP/pwa-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
+      - name: Probe WebKit offline restart independently
+        env:
+          NODE_PATH: ${{ runner.temp }}/pwa-tools/node_modules
+          PWA_REPORT_DIR: ${{ runner.temp }}/public-check
+        run: node .github/scripts/probe-offline.cjs
       - name: Test actual HTTPS site
         env:
           NODE_PATH: ${{ runner.temp }}/pwa-tools/node_modules
