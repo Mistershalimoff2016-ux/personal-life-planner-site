@@ -1,13 +1,13 @@
-# Corresponding source — GPL-3.0
+# Corresponding source — KOSTYUM UI V2
 
-[Download the modified source](personal-life-planner-f340ea71.zip).
+[Download the exact modified source](personal-life-planner-8bfdd24c.zip). GPL-3.0; original author/project:
+[Jinjinov / OpenHabitTracker](https://github.com/Jinjinov/OpenHabitTracker).
 
-Original author/project: [Jinjinov / OpenHabitTracker](https://github.com/Jinjinov/OpenHabitTracker).
-Source revision: `f340ea7166a730e4fcca60203d72d4be25c7742a`.
+Source revision: `8bfdd24c65bd929143ddf196dcf1b176d3157af7`. SHA-256: `0edf8fa4f0b2090e04d6887084f07ff80ecb824d74e6d25a0e7538b6c8c06880`.
 
-The archive includes the complete tracked code and build scripts needed for this
-Blazor WASM version. `.env`, Git history and upstream backup/database test samples
-(`TestFixtures`) are intentionally omitted for privacy. Read `PUBLIC-SOURCE-NOTES.txt`
-in the archive for build instructions and test-fixture limitations.
+The archive includes application code, resources, tests and build scripts. Runtime
+`.env`, Git history and upstream TestFixtures backup/database samples are omitted
+for privacy; no omitted file is needed to build the PWA. Read PUBLIC-SOURCE-NOTES.txt
+inside the archive for build commands and fixture limitations.
 
-SHA-256: `76d6ae9730c7c0bf23fa6e2a416437749facb2789fbe2ead18cc29d5f3ba78f7`.
+The previous source archive is retained for the earlier distributed version.

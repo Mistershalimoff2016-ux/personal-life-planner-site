@@ -1,8 +1,9 @@
 {
-  "source_commit": "f340ea7166a730e4fcca60203d72d4be25c7742a",
+  "ui_version": "KOSTYUM UI V2",
+  "source_commit": "8bfdd24c65bd929143ddf196dcf1b176d3157af7",
   "source_branch": "feat/personal-planner-mvp1",
   "deployment_repository": "Mistershalimoff2016-ux/personal-life-planner-site",
   "base_path": "/personal-life-planner-site/",
-  "corresponding_source": "source/personal-life-planner-f340ea71.zip",
-  "source_sha256": "76d6ae9730c7c0bf23fa6e2a416437749facb2789fbe2ead18cc29d5f3ba78f7"
+  "corresponding_source": "source/personal-life-planner-8bfdd24c.zip",
+  "source_sha256": "0edf8fa4f0b2090e04d6887084f07ff80ecb824d74e6d25a0e7538b6c8c06880"
 }

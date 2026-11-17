@@ -1,13 +1,13 @@
 {
-  "name": "Personal Life Planner",
-  "short_name": "Планер",
+  "name": "KOSTYUM Personal OS",
+  "short_name": "KOSTYUM",
   "id": "./",
   "start_url": "./",
   "scope": "./",
   "lang": "ru",
   "display": "standalone",
-  "background_color": "#808080",
-  "theme_color": "#808080",
+  "background_color": "#101818",
+  "theme_color": "#101818",
   "prefer_related_applications": false,
   "icons": [
     {

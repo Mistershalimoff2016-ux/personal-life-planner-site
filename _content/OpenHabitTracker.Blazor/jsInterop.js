@@ -1,3 +1,13 @@
+// Keep the application scroll area above the iOS keyboard and browser chrome.
+if (typeof window !== 'undefined' && window.visualViewport) {
+    const syncViewport = () => {
+        if (window.visualViewport.scale === 1)
+            document.documentElement.style.setProperty('--kos-viewport-height', `${window.visualViewport.height}px`);
+    };
+    window.visualViewport.addEventListener('resize', syncViewport);
+    syncViewport();
+}
+
 // This is a JavaScript module that is loaded on demand.
 // It can export any number of functions, and may import other JavaScript modules if required.
 

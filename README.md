@@ -1,6 +1,7 @@
-# Personal Life Planner
+# KOSTYUM Personal OS — UI V2
 
-Русский персональный планировщик: задачи на день, привычки и дневник тренировок.
+Русский мобильный планировщик: «Сегодня», календарь, тренировки, недельный прогресс,
+отметки энергии и настроения. Существующее локальное хранилище сохранено.
 Это готовая статическая Release-PWA на .NET / Blazor WebAssembly, основанная на
 [OpenHabitTracker](https://github.com/Jinjinov/OpenHabitTracker) (Jinjinov).
 
