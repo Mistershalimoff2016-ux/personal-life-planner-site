@@ -1,0 +1,272 @@
+// This is a JavaScript module that is loaded on demand.
+// It can export any number of functions, and may import other JavaScript modules if required.
+
+export function consoleLog(message) {
+    console.log(message);
+}
+
+export function setMode(mode) {
+    document.documentElement.setAttribute('data-bs-theme', mode);
+};
+
+export function setLang(lang) {
+    document.documentElement.setAttribute('lang', lang);
+}
+
+// The single-digit day, month and hour show whether the locale pads them.
+export function getDateTimeParts() {
+    const sample = new Date(2026, 0, 5, 9, 5);
+    const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'short' });
+    const timeFormat = new Intl.DateTimeFormat(undefined, { timeStyle: 'short' });
+    return {
+        date: dateFormat.formatToParts(sample),
+        time: timeFormat.formatToParts(sample),
+        hourCycle: timeFormat.resolvedOptions().hourCycle ?? ''
+    };
+}
+
+export function setTheme(theme) {
+    document.getElementById("theme-link").href = `_content/OpenHabitTracker.Blazor/bootstrap/${theme}/bootstrap.min.css`;
+}
+
+export function focusElement(element) {
+    element.focus();
+}
+
+export function setElementProperty(element, property, value) {
+    element[property] = value;
+}
+
+export function getElementProperty(element, property) {
+    return element[property];
+}
+
+export function getWindowDimensions() {
+    return {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+}
+
+export function getElementDimensions(element) {
+    return {
+        width: element.clientWidth,
+        height: element.clientHeight
+    };
+}
+
+export function saveAsFile(filename, bytesBase64) {
+    var link = document.createElement('a');
+    link.download = filename;
+    link.href = "data:application/octet-stream;base64," + bytesBase64;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function calculateAutoHeight(e) {
+    if (e && e.target) {
+        const scrollContainer = e.target.closest('.child-column');
+        const scrollTop = scrollContainer ? scrollContainer.scrollTop : 0;
+        e.target.style.height = 'auto';
+        e.target.style.height = this.scrollHeight + 'px';
+        e.target.style.overflowY = 'hidden';
+        if (scrollContainer) scrollContainer.scrollTop = scrollTop;
+    }
+}
+
+export function recalculateAutoHeight(textarea) {
+    if (textarea) {
+        // fire input to trigger autosize in case the text is long
+        const inputEvent = new Event('input', { bubbles: false, cancelable: true });
+        textarea.dispatchEvent(inputEvent);
+    }
+}
+
+export function setCalculateAutoHeight(textarea) {
+    if (textarea) {
+        textarea.oninput = calculateAutoHeight;
+
+        // fire input immediatelly to trigger autosize in case the text is long
+        const inputEvent = new Event('input', { bubbles: false, cancelable: true });
+        textarea.dispatchEvent(inputEvent);
+
+        textarea.rows = 2;
+    }
+}
+
+const _scrollKeys = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'PageUp', 'PageDown']);
+
+export function preventScrollKeys(element) {
+    if (element && !element.scrollKeyHandlerAdded) {
+        element.addEventListener('keydown', function (event) {
+            if (_scrollKeys.has(event.key)) {
+                event.preventDefault();
+            }
+        });
+        element.scrollKeyHandlerAdded = true;
+    }
+}
+
+export function focusElementById(id) {
+    document.getElementById(id)?.focus();
+}
+
+export function focusAndClick(element) {
+    element.focus(); // triggers blur/change on the previously focused input, queuing Blazor events
+    setTimeout(() => element.click(), 0); // deferred so Blazor processes the queued events before the click fires
+}
+
+export function blurActiveElement() {
+    document.activeElement?.blur(); // triggers change on the focused input, queuing a Blazor event
+    return new Promise(resolve => setTimeout(resolve, 0)); // resolves after Blazor processes the queued event
+}
+
+let _savedFocusElement = null;
+
+export function saveFocus() {
+    _savedFocusElement = document.activeElement;
+}
+
+export function restoreFocus() {
+    _savedFocusElement?.focus();
+    _savedFocusElement = null;
+}
+
+export function trapFocus(id) {
+    const container = document.getElementById(id);
+    if (!container || container.focusTrapHandlerAdded) return;
+    container.focusTrapHandlerAdded = true;
+    container.addEventListener('keydown', function (event) {
+        if (event.key !== 'Tab') return;
+        const focusable = Array.from(container.querySelectorAll(
+            'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ));
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey) {
+            if (document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+}
+
+export function handleTabKey(textarea) {
+    if (textarea && !textarea.tabKeyHandlerAdded) {
+        textarea.addEventListener('keydown', function (event) {
+            if (event.key === 'Tab') {
+                event.preventDefault();
+
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                const value = textarea.value;
+                const selectedText = value.substring(start, end);
+
+                if (event.shiftKey) {
+                    // Shift+Tab: unindent affected lines
+                    const lineStart = value.lastIndexOf('\n', start - 1) + 1;
+                    const lineEnd = end;
+                    const lines = value.substring(lineStart, lineEnd).split('\n');
+                    let removedInFirst = 0;
+                    const newLines = lines.map((line, i) => {
+                        if (line.startsWith('\t')) {
+                            if (i === 0) removedInFirst = 1;
+                            return line.substring(1);
+                        }
+                        return line;
+                    });
+                    const newChunk = newLines.join('\n');
+                    const removed = (lines.join('\n').length) - newChunk.length;
+                    textarea.value = value.substring(0, lineStart) + newChunk + value.substring(lineEnd);
+                    textarea.setSelectionRange(Math.max(lineStart, start - removedInFirst), end - removed);
+                } else if (selectedText.includes('\n')) {
+                    // Tab with multi-line selection: indent each line
+                    const lineStart = value.lastIndexOf('\n', start - 1) + 1;
+                    const lineEnd = end;
+                    const lines = value.substring(lineStart, lineEnd).split('\n');
+                    const newChunk = lines.map(line => '\t' + line).join('\n');
+                    const added = lines.length;
+                    textarea.value = value.substring(0, lineStart) + newChunk + value.substring(lineEnd);
+                    textarea.setSelectionRange(start + 1, end + added);
+                } else {
+                    // Tab with no selection or single-line selection: insert tab at cursor
+                    textarea.value = value.substring(0, start) + '\t' + value.substring(end);
+                    textarea.setSelectionRange(start + 1, start + 1);
+                }
+
+                const inputEvent = new Event('input', { bubbles: true, cancelable: true });
+                textarea.dispatchEvent(inputEvent);
+
+                textarea.tabKeyPressed = true;
+            }
+        });
+
+        // Add blur event listener to trigger change event when the textarea loses focus
+        textarea.addEventListener('blur', function () {
+            if (textarea.tabKeyPressed) {
+                textarea.tabKeyPressed = false;
+                const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+                textarea.dispatchEvent(changeEvent);
+            }
+        });
+
+        textarea.tabKeyHandlerAdded = true;
+    }
+}
+
+export async function requestNotificationPermission() {
+    if (!("Notification" in window))
+        return false;
+
+    if (Notification.permission === "granted")
+        return true;
+
+    // A denied permission cannot be re-requested; only the browser's own UI can change it back.
+    if (Notification.permission === "denied")
+        return false;
+
+    return await Notification.requestPermission() === "granted";
+}
+
+// Coming back from the OS settings page does not reload the app, so whoever shows OS state has to
+// re-read it when the app becomes visible again. Assignment rather than a growing subscription: a
+// component that initializes twice replaces the reference instead of adding a second listener.
+let visibleRef = null;
+
+export function setVisibleAction(dotnetRef) {
+    visibleRef = dotnetRef;
+}
+
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && visibleRef)
+        visibleRef.invokeMethodAsync("OnBecameVisible").catch(() => { });
+});
+
+// "default", "granted" or "denied", or "" where the browser has no Notification API at all.
+export function getNotificationPermission() {
+    if (!("Notification" in window))
+        return "";
+
+    return Notification.permission;
+}
+
+export function showNotification(title, body, route, dotnetRef) {
+    if (!("Notification" in window) || Notification.permission !== "granted")
+        return;
+
+    const notification = new Notification(title, { body: body });
+
+    notification.onclick = () => {
+        window.focus();
+        notification.close();
+        dotnetRef.invokeMethodAsync("OnNotificationActivated", route).catch(() => { });
+    };
+}
