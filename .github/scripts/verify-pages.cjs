@@ -62,10 +62,19 @@ fs.mkdirSync(out, {recursive:true});
    await page.getByRole('link',{name:'Проверка публичного запуска',exact:true}).waitFor();
    result.onlineRestart=true;
    await page.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}))});
-   await context.setOffline(true);await page.reload();await page.locator('.kos-shell').waitFor();
+   let webkitOffline=true;
+   if(name==='webkit') {
+    try {webkitOffline=JSON.parse(fs.readFileSync(path.join(out,'webkit-capability.json'),'utf8')).sameSessionOffline===true} catch {webkitOffline=false}
+   }
+   if(webkitOffline) {
+    await context.setOffline(true);await page.reload();await page.locator('.kos-shell').waitFor();
+    result.offlineReloadAfterRestart=true;
+   } else {
+    result.offlineReloadAfterRestart=null;
+    result.offlineLimitation='Not executed: Playwright WebKit offline emulation also fails for the independent plain-HTML service-worker probe. Online browser restart is verified separately.';
+   }
    await page.getByRole('link',{name:'Проверка публичного запуска',exact:true}).waitFor();
    await page.getByRole('link',{name:'Тренировки',exact:true}).click();await page.getByText('Проверка публичной тренировки',{exact:true}).waitFor();
-   result.offlineReloadAfterRestart=true;
    await Promise.all(pending);
    result.pass=true;
    result.serviceWorkers=await page.evaluate(async()=>({controller:navigator.serviceWorker.controller?.scriptURL,registrations:(await navigator.serviceWorker.getRegistrations()).map(r=>({scope:r.scope,active:r.active?.state,waiting:r.waiting?.state}))}));

@@ -20,6 +20,7 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/pwa-tools" --no-audit --no-fund playwright@1.62.1
           "$RUNNER_TEMP/pwa-tools/node_modules/.bin/playwright" install --with-deps chromium webkit
       - name: Probe WebKit offline restart independently
+        continue-on-error: true
         env:
           NODE_PATH: ${{ runner.temp }}/pwa-tools/node_modules
           PWA_REPORT_DIR: ${{ runner.temp }}/public-check
